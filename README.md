@@ -9,4 +9,4 @@ Like C, Python also has a linter / style guide like Betty, called PEP8, also now
 
 Enjoy!
 
-- Guillaume
+~ Guillaume
