@@ -1,0 +1,27 @@
+#!/usr/bin/python3
+"""
+This is a test file for the module '3-say_my_name.py'. 
+To run these tests, use the following command:
+
+python3 -m doctest -v ./tests/3-say_my_name.txt
+
+>>> say_my_name = __import__('3-say_my_name').say_my_name
+
+# Test with valid first name and last name
+>>> say_my_name("John", "Smith")
+My name is John Smith
+
+# Test with valid first name and last name
+>>> say_my_name("Walter", "White")
+My name is Walter White
+
+# Test with only first name
+>>> say_my_name("Bob")
+My name is Bob 
+
+# Test with non-string first name
+>>> say_my_name(12, "White")
+Traceback (most recent call last):
+...
+TypeError: first_name must be a string
+"""
