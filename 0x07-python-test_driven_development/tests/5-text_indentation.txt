@@ -1,0 +1,9 @@
+#!/usr/bin/python3
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+>>> text = "Hello, how are you? I'm fine. Thank you!"
+>>> text_indentation(text) #doctest: +NORMALIZE_WHITESPACE
+Hello, how are you?
+<BLANKLINE>
+I'm fine.
+<BLANKLINE>
+Thank you!
