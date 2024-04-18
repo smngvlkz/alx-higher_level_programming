@@ -66,5 +66,40 @@ class TestSquare(unittest.TestCase):
         expected_str = f"[Square] ({s2.id}) {s2.x}/{s2.y} - {s2.width}"
         self.assertEqual(str(s2), expected_str)
 
+    def test_update(self):
+        """
+        Update method test case.
+        """
+        s = Square(5)
+        s.update(10)
+        self.assertEqual(s.id, 10)
+
+        s.update(1, 2)
+        self.assertEqual(s.id, 1)
+        self.assertEqual(s.size, 2)
+
+        s.update(1, 2, 3)
+        self.assertEqual(s.id, 1)
+        self.assertEqual(s.size, 2)
+        self.assertEqual(s.x, 3)
+
+        s.update(1, 2, 3, 4)
+        self.assertEqual(s.id, 1)
+        self.assertEqual(s.size, 2)
+        self.assertEqual(s.x, 3)
+        self.assertEqual(s.y, 4)
+
+        s.update(x=12)
+        self.assertEqual(s.x, 12)
+
+        s.update(size=7, y=1)
+        self.assertEqual(s.size, 7)
+        self.assertEqual(s.y, 1)
+
+        s.update(size=7, id=89, y=1)
+        self.assertEqual(s.id, 89)
+        self.assertEqual(s.size, 7)
+        self.assertEqual(s.y, 1)
+
 if __name__ == "__main__":
     unittest.main()
