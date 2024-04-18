@@ -17,5 +17,20 @@ class TestRectangle(unittest.TestCase):
         r3 = Rectangle(10, 2, 0, 0, 12)
         self.assertEqual(r3.id, 12)
 
+    def test_validation(self):
+        """Rectangle class test validation."""
+        with self.assertRaises(TypeError):
+            r = Rectangle(10, "2")
+
+        with self.assertRaises(ValueError):
+            r = Rectangle(10, 2)
+            r.width = -10
+
+        with self.assertRaises(TypeError):
+            r = Rectangle(10, 2)
+            r.x = {}
+
+        with self.assertRaises(ValueError):
+            r = Rectangle(10, 2, 3, -1)
 if __name__ == "__main__":
     unittest.main()
