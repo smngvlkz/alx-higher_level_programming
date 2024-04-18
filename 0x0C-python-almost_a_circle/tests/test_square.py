@@ -13,15 +13,26 @@ class TestSquare(unittest.TestCase):
         """
         s1 = Square(5, id=6)
         self.assertEqual(s1.id, 6)
-        self.assertEqual(s1.width, 5)
+        self.assertEqual(s1.size, 5)
         self.assertEqual(s1.x, 0)
         self.assertEqual(s1.y, 0)
 
         s2 = Square(2, 4, 6, 12)
         self.assertEqual(s2.id, 12)
-        self.assertEqual(s2.width, 2)
+        self.assertEqual(s2.size, 2)
         self.assertEqual(s2.x, 4)
         self.assertEqual(s2.y, 6)
+
+    def test_size_setter(self):
+        """
+        Size setter.
+        """
+        s = Square(5)
+        s.size = 10
+        self.assertEqual(s.size, 10)
+
+        with self.assertRaises(TypeError):
+            s.size = "9"
 
     def test_validation(self):
         """
