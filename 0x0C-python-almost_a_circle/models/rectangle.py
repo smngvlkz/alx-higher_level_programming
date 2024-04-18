@@ -80,6 +80,14 @@ class Rectangle(Base):
         for _ in range(self.height):
             print(' ' * self.x + '#' * self.width)
 
+    def update(self, *args):
+        """
+        Updating Rectangle attributes.
+        """
+        attributes = ['id', 'width', 'height', 'x', 'y']
+        for attribute, value in zip(attributes, args):
+            setattr(self, attribute, value)
+
     def __str__(self):
         """
         String representation for Rectangle class.
