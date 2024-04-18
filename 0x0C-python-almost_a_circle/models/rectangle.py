@@ -80,13 +80,18 @@ class Rectangle(Base):
         for _ in range(self.height):
             print(' ' * self.x + '#' * self.width)
 
-    def update(self, *args):
+    def update(self, *args, **kwargs):
         """
         Updating Rectangle attributes.
         """
         attributes = ['id', 'width', 'height', 'x', 'y']
-        for attribute, value in zip(attributes, args):
-            setattr(self, attribute, value)
+        if args and len(args) > 0:
+            for attribute, value in zip(attributes, args):
+                setattr(self, attribute, value)
+        else:
+            for key, value in kwargs.items():
+                if key in attributes:
+                    setattr(self, key, value)
 
     def __str__(self):
         """
