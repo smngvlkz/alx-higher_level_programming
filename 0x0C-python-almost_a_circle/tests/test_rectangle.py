@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import unittest
+import sys
 from io import StringIO
 from models.rectangle import Rectangle
 
@@ -50,13 +51,21 @@ class TestRectangle(unittest.TestCase):
         """
         Display method test case.
         """
-        r = Rectangle(2, 3)
-        expected_output = "##\n##\n##\n"
-
+        r1 = Rectangle(2, 3, 2, 2)
+        expected_output = "\n\n  ##\n  ##\n  ##\n"
         captured_output = StringIO()
-        with captured_output:
-            r.display()
+        sys.stdout = captured_output
+        r1.display()
+        sys.stdout = sys.__stdout__
         self.assertEqual(captured_output.getvalue(), expected_output)
+
+        r2 = Rectangle(3, 2, 1, 0)
+        expected_output2 = " ###\n ###\n"
+        captured_output = StringIO()
+        sys.stdout = captured_output
+        r2.display()
+        sys.stdout = sys.__stdout__
+        self.assertEqual(captured_output.getvalue(), expected_output2)
 
     def test_str(self):
         """
