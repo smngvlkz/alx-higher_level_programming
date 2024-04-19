@@ -43,6 +43,22 @@ class TestBase(unittest.TestCase):
         json_str = Base.to_json_string(list_dicts)
         self.assertEqual(json_str, '[{"id": 1, "size": 10, "x": 2, "y": 1}]')
 
+    def test_from_json_string(self):
+        """
+        from_json_string method test case.
+        """
+        json_str = '[{"id": 89, "width": 10, "height": 4}, {"id": 7, "width": 1, "height": 7}]'
+        expected_output = [{'id': 89, 'width': 10, 'height': 4}, {'id': 7, 'width': 1, 'height': 7}]
+        self.assertEqual(Base.from_json_string(json_str), expected_output)
+
+        json_str = None
+        expected_output = []
+        self.assertEqual(Base.from_json_string(json_str), expected_output)
+
+        json_str = ''
+        expected_output = []
+        self.assertEqual(Base.from_json_string(json_str), expected_output)
+
     def test_save_to_file(self):
         """
         save_to_file class method test case.
