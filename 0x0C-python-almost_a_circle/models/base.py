@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import json
+import os
 """
 Base class Module.
 """
@@ -48,6 +49,18 @@ class Base:
         json_string = cls.to_json_string(list_dicts)
         with open(filename, 'w') as f:
             f.write(json_string)
+
+    @classmethod
+    def load_from_file(cls):
+        """
+        Load instance from file.
+        """
+        filename = f"{cls.__name__}.json"
+        if not os.path.exists(filename):
+            return []
+        with open(filename, 'r') as f:
+            list_dicts = cls.from_json_string(f.read())
+        return [cls.create(**d) for d in list_dicts]
 
     @classmethod
     def create(cls, **dictionary):

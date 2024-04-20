@@ -2,6 +2,7 @@
 import unittest
 from models.rectangle import Rectangle
 from models.base import Base
+from models.square import Square
 
 import os
 import json
@@ -76,6 +77,28 @@ class TestBase(unittest.TestCase):
             os.remove("Rectangle.json")
         except FileNotFoundError:
             pass
+
+    def test_load_from_file(self):
+        """
+        test case for load_from_file method.
+        """
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        list_rectangles_input = [r1, r2]
+        Rectangle.save_to_file(list_rectangles_input)
+        list_rectangles_output = Rectangle.load_from_file()
+        self.assertEqual(len(list_rectangles_input), len(list_rectangles_output))
+        for r_in, r_out in zip(list_rectangles_input, list_rectangles_output):
+            self.assertEqual(str(r_in), str(r_out))
+        
+        s1 = Square(5)
+        s2 = Square(7, 9, 1)
+        list_squares_input = [s1, s2]
+        Square.save_to_file(list_squares_input)
+        list_squares_output = Square.load_from_file()
+        self.assertEqual(len(list_squares_input), len(list_squares_output))
+        for s_in, s_out in zip(list_squares_input, list_squares_output):
+            self.assertEqual(str(s_in), str(s_out))
 
     def test_create(self):
         """
