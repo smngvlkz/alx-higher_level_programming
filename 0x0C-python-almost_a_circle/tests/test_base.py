@@ -76,5 +76,16 @@ class TestBase(unittest.TestCase):
             os.remove("Rectangle.json")
         except FileNotFoundError:
             pass
+
+    def test_create(self):
+        """
+        Create method test case.
+        """
+        r1 = Rectangle(10, 7, 2, 8)
+        r1_dictionary = r1.to_dictionary()
+        r2 = Rectangle.create(**r1_dictionary)
+        self.assertEqual(str(r1), str(r2))
+        self.assertNotEqual(r1, r2)
+
 if __name__ == "__main__":
     unittest.main()
