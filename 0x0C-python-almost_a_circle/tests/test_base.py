@@ -110,5 +110,27 @@ class TestBase(unittest.TestCase):
         self.assertEqual(str(r1), str(r2))
         self.assertNotEqual(r1, r2)
 
+    def test_save_load_from_file_csv(self):
+        """
+        save_to_file_cvs and load_from_file_csv methods test case.
+        """
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        list_rectangles_input = [r1, r2]
+        Rectangle.save_to_file_csv(list_rectangles_input)
+        list_rectangles_output = Rectangle.load_from_file_csv()
+        self.assertEqual(len(list_rectangles_input), len(list_rectangles_output))
+        for r_in, r_out in zip(list_rectangles_input, list_rectangles_output):
+            self.assertEqual(str(r_in), str(r_out))
+
+        s1 = Square(5)
+        s2 = Square(7, 9, 1)
+        list_squares_input = [s1, s2]
+        Square.save_to_file_csv(list_squares_input)
+        list_squares_output = Square.load_from_file_csv()
+        self.assertEqual(len(list_squares_input), len(list_squares_output))
+        for s_in, s_out in zip(list_squares_input, list_squares_output):
+            self.assertEqual(str(s_in), str(s_out))
+
 if __name__ == "__main__":
     unittest.main()
