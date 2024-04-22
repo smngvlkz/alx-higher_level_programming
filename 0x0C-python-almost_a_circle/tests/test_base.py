@@ -132,5 +132,23 @@ class TestBase(unittest.TestCase):
         for s_in, s_out in zip(list_squares_input, list_squares_output):
             self.assertEqual(str(s_in), str(s_out))
 
+    def test_draw(self):
+        """
+        Test case for draw static method.
+        """
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        list_rectangles = [r1, r2]
+
+        s1 = Square(5)
+        s2 = Square(7, 9, 1)
+        list_squares = [s1, s2]
+
+        try:
+            Base.draw(list_rectangles, list_squares)
+        except Exception as e:
+            self.fail(f"Test failed with exception: {e}")
+
+
 if __name__ == "__main__":
     unittest.main()

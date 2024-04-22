@@ -2,6 +2,7 @@
 import json
 import os
 import csv
+import turtle
 
 """
 Base class Module.
@@ -40,6 +41,38 @@ class Base:
             return[]
         else:
             return json.loads(json_string)
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """
+        All rectangles and squares drawn using turtle module.
+        """
+        window = turtle.Screen()
+        t = turtle.Turtle()
+
+        for rect in list_rectangles:
+            t.penup()
+            t.goto(rect.x, rect.y)
+            t.pendown()
+            for _ in range(2):
+                t.forward(rect.width)
+                t.right(90)
+                t.forward(rect.height)
+                t.right(90)
+
+        t.penup()
+        t.goto(0, 0)
+        t.pendown()
+
+        for square in list_squares:
+            t.penup()
+            t.goto(square.x, square.y)
+            t.pendown()
+            for _ in range(4):
+                t.forward(square.size)
+                t.right(90)
+
+        window.mainloop()
 
     @classmethod
     def save_to_file(cls, list_objs):
