@@ -4,14 +4,11 @@ import os
 import csv
 import turtle
 
-"""
-Base class Module.
-"""
 class Base():
     """
-    Base class.
+    Base class module.
 
-    Atgtributes:
+    Attributes:
         __nb_objects: Number of Base objects.
     """
     __nb_objects = 0
