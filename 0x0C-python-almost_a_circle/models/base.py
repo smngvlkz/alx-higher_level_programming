@@ -7,15 +7,21 @@ import turtle
 """
 Base class Module.
 """
-class Base:
+class Base():
     """
     Base class.
+
+    Atgtributes:
+        __nb_objects: Number of Base objects.
     """
     __nb_objects = 0
 
     def __init__(self, id=None):
         """
-        Constructor.
+        New Base Constructor.
+
+        Args:
+            id: Id of the Base instance. If None, id set to the number of Base objects.
         """
         if id is not None:
             self.id = id
@@ -27,6 +33,14 @@ class Base:
     def to_json_string(list_dictionaries):
         """
         JSON string representation of list_dictionaries returned.
+
+        if `list_dictionaries` is None or empty, return an empty string.
+
+        Parameters:
+            list_dictionaries: List of dictionaries to convert to a JSON string.
+
+        Returns:
+            str: JSON string epresentantion of `list_dictionaries`.
         """
         if list_dictionaries is None or not list_dictionaries:
             return "[]"
@@ -36,6 +50,12 @@ class Base:
     def from_json_string(json_string):
         """
         JSON string representation json_string returned.
+
+        Args:
+            json_string: JSON string.
+
+        Returns:
+            list: List of dictionaries. Returns an empty list if json_string is None or empty.
         """
         if json_string is None or len(json_string) == 0:
             return[]
@@ -46,6 +66,10 @@ class Base:
     def draw(list_rectangles, list_squares):
         """
         All rectangles and squares drawn using turtle module.
+
+        Args:
+            list_rectangles: List of Rectangle instance.
+            list_squares: List of Square instances.
         """
         window = turtle.Screen()
         t = turtle.Turtle()
@@ -78,6 +102,9 @@ class Base:
     def save_to_file(cls, list_objs):
         """
         JSON string representation of list_obj to a file written.
+
+        Args:
+            list_objs: List of instances that inherits from Base.
         """
         filename = f"{cls.__name__}.json"
         list_dicts = [obj.to_dictionary() for obj in list_objs] if list_objs else []
@@ -88,7 +115,10 @@ class Base:
     @classmethod
     def load_from_file(cls):
         """
-        Load instance from file.
+        Load instance from file returned.
+
+        Returns:
+            list: List of instances that inherits from Base.
         """
         filename = f"{cls.__name__}.json"
         if not os.path.exists(filename):
@@ -101,6 +131,12 @@ class Base:
     def create(cls, **dictionary):
         """
         Create an instance with all dictionary attribute already set.
+
+        Args:
+            **dictionary: Dictionary of key-value pairs of attributes.
+
+        Returns:
+            Base: An instance of Base class.
         """
         if cls.__name__ == 'Rectangle':
             dummy = cls(1, 1)
@@ -115,6 +151,9 @@ class Base:
     def save_to_file_csv(cls, list_objs):
         """
         Instance to save as a CSV file.
+
+        Args:
+            list_objs: List of instances that inherits from Base.
         """
         filename = f"{cls.__name__}.csv"
         with open(filename, 'w', newline='') as csvfile:
@@ -130,7 +169,10 @@ class Base:
     @classmethod
     def load_from_file_csv(cls):
         """
-        Instance from a CSV file to load.
+        Instance from a CSV file to load returned.
+
+        Returns:
+            list: List of instances that inherits from Base.
         """
         filename = f"{cls.__name__}.csv"
         list_objs = []
