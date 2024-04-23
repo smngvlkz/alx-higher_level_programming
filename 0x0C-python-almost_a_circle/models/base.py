@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+Base Class module.
+"""
 import json
 import os
 import csv
