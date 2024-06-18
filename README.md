@@ -27,6 +27,8 @@ Enjoy!
 - `0x0B-python-input_output`: Input and output in Python.
 - `0x0C-python-almost_a_circle`: A project that brings many of the previous concepts together.
 
+**And a whole lot more...**
+
 ## Usage
 
 Each directory has a specific README file that provides more details on how to use and run each project.
