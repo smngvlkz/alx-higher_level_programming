@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+# Takes my GitHub credentials and uses GitHub API to display my id"
+
 import requests
 import sys
 
