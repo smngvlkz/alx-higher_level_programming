@@ -1,39 +1,21 @@
 #!/usr/bin/python3
-Rectangle = __import__('9-rectangle').Rectangle
+"""
+This program improves a previous Square
+"""
 
-class Square(Rectangle):
+
+PrevSquare = __import__('10-square').Square
+
+
+class Square(PrevSquare):
     """
-    Class inherits from Rectangle
-
-    Attributes:
-        _size: Square size
+    Improved Class Square
     """
 
     def __init__(self, size):
-        """
-        Initializes a new instance of Square.
-
-        Args:
-            size: Square size
-        """
-        self.integer_validator("size", size)
-        super().__init__(size, size)
-        self.__size = size
-
-    def area(self):
-        """
-        Returns square area
-
-        Returns:
-            int: Square area
-        """
-        return self.__size * self.__size
+        """Constructor of the improved Square"""
+        super().__init__(size)
 
     def __str__(self):
-        """
-        Returns a string representation of the square.
-
-        Returns:
-            str: A string in the format '[Square] <size>/<size>'.
-        """
-        return "[Square] {}/{}".format(self.__size, self.__size)
+        """String representation of Square"""
+        return '[Square] {0:d}/{0:d}'.format(self.__size)
