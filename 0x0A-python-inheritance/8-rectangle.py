@@ -1,28 +1,20 @@
 #!/usr/bin/python3
+"""
+This program use the inherit for create Rectangle
+"""
+
+
 BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
 
 class Rectangle(BaseGeometry):
     """
-    Rectangle class
-    It inherits from BaseGeometry
+    Class Rectangle based in BaseGeometry
     """
 
     def __init__(self, width, height):
-        """
-        Initializes a new instance of Rectangle
-
-        Args:
-            width: Width of the rectangle
-            height: Heighr of the rectangle
-        """
-        self.integer_validator("width", width)
-        self.integer_validator("height", height)
+        """Constructor of Retangle"""
+        BaseGeometry.integer_validator(self, 'width', width)
         self.__width = width
+        BaseGeometry.integer_validator(self, 'height', height)
         self.__height = height
-
-    def __str__(self):
-        """
-        Returns a string representation of the rectanlge instance
-        """
-        return "<8-rectangle.Rectangle object at 0x7f6f488f7eb8>"
-
