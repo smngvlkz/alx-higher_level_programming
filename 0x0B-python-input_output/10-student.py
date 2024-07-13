@@ -1,18 +1,21 @@
 #!/usr/bin/python3
-class Student:
+"""
+This program define a Student in a class
+"""
+
+
+class Student():
     """
-    Defines a student by public instance attributes:
-    first_nme, last_name, and age.
+    Class of a student
     """
 
     def __init__(self, first_name, last_name, age):
         """
-        Instantiation with first_name, last_name and age.
-
+        Constructor of a student
         Args:
-            first_name: Student's first name
-            last_name: Student's last name
-            age: Student's age.
+          - first_name: str
+          - last_name: str
+          - age: int
         """
         self.first_name = first_name
         self.last_name = last_name
@@ -20,15 +23,19 @@ class Student:
 
     def to_json(self, attrs=None):
         """
-        Retrieves a dictionary representation of a Student instance.
-
+        Return the dict representation of the instance
         Args:
-            attrs: List of attribute name of retrieve.
-
-        Returns:
-            dict: Disctionary representation of the Student instance.
+          - attrs: list (None default)
         """
+
+        result = {}
+
         if attrs is None:
-            return self.__dict__
-        else:
-            return {attr: getattr(self, attr) for attr in attrs if hasattr(self, attr)}
+            return (self.__dict__)
+
+        for attr in attrs:
+            value = self.__dict__.get(attr)
+            if value is not None:
+                result[attr] = value
+
+        return (result)
