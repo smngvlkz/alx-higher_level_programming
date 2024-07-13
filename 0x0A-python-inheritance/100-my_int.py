@@ -1,33 +1,14 @@
 #!/usr/bin/python3
+"""This program create a new int called MyInt and is rebel!!!"""
+
+
 class MyInt(int):
-    """
-    Class inherits from int and inverts the '==' and '=' operators.
+    """Class MyInt is like an int but Rebel"""
 
-    Methods:
-        __eq__: Overrides the '==' operator
-        __ne__: Overrides the '!=' operator
-    """
+    def __eq__(self, other_num):
+        """Rebel!!! equal is not equal"""
+        return super().__ne__(other_num)
 
-    def __eq__(self, other):
-        """
-        Overrides the '==' operator
-
-        Args:
-            other: Integer to compare with
-
-        Returns:
-            bool: True if self and other are not equal, otherwise False.
-        """
-        return super().__ne__(other)
-
-    def __ne__(self, other):
-        """
-        Overrides the '!=' operator
-
-        Args:
-            other: Integer to compatre with
-
-        Returns:
-            bool: True if self and other equal, False otherwise.
-        """
-        return super().__eq__(other)
+    def __ne__(self, other_num):
+        """Rebel!!! not equal is equal"""
+        return super().__eq__(other_num)
