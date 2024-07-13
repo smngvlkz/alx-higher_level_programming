@@ -1,17 +1,19 @@
 #!/usr/bin/python3
+"""
+This program can append text in a file,
+create the file if doesn't exists
+"""
+
+
 def append_write(filename="", text=""):
     """
-    Appends a string at the end of a text file (UTF8) and returns the number of characters added.
-
+    Append text to the end of file, and created if doesn't exists.
     Args:
-        filename: Name of the file to be written to. Defaults to an empty string.
-        text: Text to be appended to the file. Defaults to an empty string.
-
-    Returns:
-        int: Number of characters added to the file.
-
-    Raises:
-        IOError: the file if can't be opened for writing.
+      - filename: string
+      - text: string
     """
-    with open(filename, 'a', encoding='utf-8') as f:
-        return f.write(text)
+
+    with open(filename, mode="a", encoding="utf-8") as _file:
+        _file.write(text)
+
+    return (len(text))
