@@ -1,20 +1,18 @@
 #!/usr/bin/python3
+"""
+This program reads files .json and convert to types of python
+"""
+
+
 import json
+
 
 def load_from_json_file(filename):
     """
-    Creates an object from a "JSON file".
-
+    Read a file and convert the content (JSON) to python types
     Args:
-        filename: Name of the file to be read and converted to a Python object.
-
-    Returns:
-        object: Python object represented by the JSON string in the file.
-
-    Raises:
-        FileNotFoundError: the file if it doesn't exist.
-        IOError: the file if it can't be opened for reading.
-        ValueError: the file if content is not valid JSON string.
+      - filename: path
     """
-    with open(filename, 'r', encoding='utf-8') as f:
-        return json.loads(f.read())
+
+    with open(filename, mode="r", encoding="utf-8") as _file:
+        return (json.loads(_file.read()))
