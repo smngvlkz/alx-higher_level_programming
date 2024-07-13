@@ -1,18 +1,21 @@
 #!/usr/bin/python3
-class Student:
+"""
+This program define a Student in a class
+"""
+
+
+class Student():
     """
-    Defines a student by a public instance attributes:
-    first_name, last_name, and age.
+    Class of a student
     """
 
     def __init__(self, first_name, last_name, age):
         """
-        Instantaition with first_name, last_name, and age.
-
+        Constructor of a student
         Args:
-            first_name: Student's first name.
-            last_name: Student's last name.
-            age: Student's age.
+          - first_name: str
+          - last_name: str
+          - age: int
         """
         self.first_name = first_name
         self.last_name = last_name
@@ -20,9 +23,6 @@ class Student:
 
     def to_json(self):
         """
-        Retrieves a dictionary representation of a Student instance
-
-        Returns:
-            dict: Dictionary representation of Student instance.
+        Return the dict representation of the instance
         """
-        return self.__dict__
+        return (self.__dict__)
