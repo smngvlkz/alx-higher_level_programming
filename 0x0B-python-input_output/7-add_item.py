@@ -1,50 +1,28 @@
 #!/usr/bin/python3
-import sys
-import json
+"""
+This program take the file add_item.json, and add the
+parameters to the list inside this file.
+- If the file doesn't exist create it.
+- If no exist parameters do nothing or create the list if the file is empty.
+"""
 
-def save_to_json_file(my_obj, filename):
-    """
-    Writes an object to a text file, using a JSON representation.
+from sys import argv
+from os.path import exists
 
-    Args:
-        my_obj: Object to be converted to a JSON string and written to the file.
-        filename: Name of the file to be written to.
-    """
-    with open(filename, 'w', encoding='utf-8') as f:
-        f.write(json.dumps(my_obj))
+save_to_json_file = __import__("5-save_to_json_file").save_to_json_file
+load_from_json_file = __import__("6-load_from_json_file").load_from_json_file
 
-def load_from_json_file(filename):
-    """
-    Creates an object from a "JSON file".
+namefile = "add_item.json"
+argc = len(argv)
 
-    Args:
-        filename: Name of the file to be read and converted to a Python object.
+file_list = []
 
-    Returns:
-        object: Python object represented by the JSON string in the file.
-    """
-    with open(filename, 'r', encoding='utf-8') as f:
-        file_contents = f.read()
-        if file_contents:
-            return json.loads(file_contents)
-        else:
-            return []
+if exists(namefile):
+    file_list = load_from_json_file(namefile)
 
-def main():
-    """
-    Main function that adds all arguments to a Python list, and then saves them to a file.
-
-    tries to first load a list from `load_from_json_file`.
-    if file doesn't exist, initializes an empty list.
-    `add_item.json` using the function `save_to_json_file`.
-    """
-    try:
-        my_list = load_from_json_file("add_item.json")
-    except FileNotFoundError:
-        my_list = []
-
-    my_list.extend(sys.argv[1:])
-    save_to_json_file(my_list, "add_item.json")
-
-if __name__ == "__main__":
-    main()
+if (argc == 1):
+    save_to_json_file(file_list, namefile)
+else:
+    for index in range(1, argc):
+        file_list.append(argv[index])
+    save_to_json_file(file_list, namefile)
