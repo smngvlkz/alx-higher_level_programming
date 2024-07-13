@@ -1,46 +1,42 @@
 #!/usr/bin/python3
+"""
+Module for log parsing scripts.
+"""
+
+
 import sys
-import signal
 
-def print_stats(status_codes, file_size):
-    """
-    Prints the statistics of the file.
 
-    Args:
-        status_codes: Dictionary status of codes and their counts.
-        file_size: Total size of the file.
-    """
-    print("File size: {:d}".format(file_size))
-    for code in sorted(status_codes.keys()):
-        if status_codes[code] > 0:
-            print("{:s}: {:d}".format(code, status_codes[code]))
+if __name__ == "__main__":
+    size = [0]
+    codes = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
 
-def signal_handler(sig, frame):
-    """
-    Handles the signal interruption (CTRL + C).
+    def check_match(line):
+        '''Checks for regexp match in line.'''
+        try:
+            line = line[:-1]
+            words = line.split(" ")
+            size[0] += int(words[-1])
+            code = int(words[-2])
+            if code in codes:
+                codes[code] += 1
+        except Exception as e:
+            pass
 
-    Args:
-        sig: Signal number
-        frame: Current stack frame
-    """
-    print_stats(status_codes, file_size)
-    sys.exit(0)
-
-status_codes = {"200": 0, "301": 0, "400": 0, "401": 0, "403": 0, "404": 0, "405": 0, "500": 0}
-file_size = 0
-
-signal.signal(signal.SIGINT, signal_handler)
-
-try:
-    for i, line in enumerate(sys.stdin, 1):
-        data = line.split()
-        status_code = data[-2]
-        file_size += int(data[-1])
-        if status_code in status_codes:
-            status_codes[status_code] += 1
-        if i % 10 == 0:
-            print_stats(status_codes, file_size)
-except KeyboardInterrupt:
-    pass
-finally:
-    print_stats(status_codes, file_size)
+    def print_stats():
+        '''Prints accumulated statistics.'''
+        print("File size: {}".format(size[0]))
+        for k in sorted(codes.keys()):
+            if codes[k]:
+                print("{}: {}".format(k, codes[k]))
+    i = 1
+    try:
+        for line in sys.stdin:
+            check_match(line)
+            if i % 10 == 0:
+                print_stats()
+            i += 1
+    except KeyboardInterrupt:
+        print_stats()
+        raise
+    print_stats()
