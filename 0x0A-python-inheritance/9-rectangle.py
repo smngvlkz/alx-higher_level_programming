@@ -1,42 +1,28 @@
 #!/usr/bin/python3
-BaseGeometry = __import__('7-base_geometry').BaseGeometry
+"""
+This program use the inherit for create a new Rectangle
+"""
 
-class Rectangle(BaseGeometry):
+
+prevRectangle = __import__('8-rectangle').Rectangle
+
+
+class Rectangle(prevRectangle):
     """
-    Class inherits from BaseGeometry.
-
-    Attributes:
-        _width: Width of rectangle.
-        _height: Heighr of the rectangle.
+    Class Rectangle based in BaseGeometry and other rectangle
     """
 
     def __init__(self, width, height):
-        """
-        Intitializes a new instance of Rectangle.
-
-        Args:
-            width: Width of the rectangle
-            height: Heighr of the rectangle.
-        """
-        self.integer_validator("width", width)
-        self.integer_validator("height", height)
+        """Constructor of new Retangle"""
+        self.integer_validator('width', width)
         self.__width = width
+        self.integer_validator('height', height)
         self.__height = height
 
     def area(self):
-        """
-        Returns rectangle's area
-
-        Returns:
-            int: Area of the rectangle
-        """
+        """This method return the area of the Rectangle"""
         return self.__width * self.__height
 
     def __str__(self):
-        """
-        Returns a string representation of the rectangle.
-
-        Returns:
-            str: A string in the format '[Rectangle] <width>/<height>'.
-        """
-        return "[Rectangle] {}/{}".format(self.__width, self.__height)
+        """This method return the representation of the Rectangle"""
+        return '[Rectangle] {:d}/{:d}'.format(self.__width, self.__height)
