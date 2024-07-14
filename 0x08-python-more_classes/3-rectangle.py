@@ -1,83 +1,84 @@
 #!/usr/bin/python3
-class Rectangle:
+"""
+A Rectangle Class with the private instance attributes width, height
+and public methods
+"""
+
+
+class Rectangle():
     """
-    Defines a rectangle with private atribute width and height.
+    A Rectangle Class with the private instance attributes width and height
     """
 
     def __init__(self, width=0, height=0):
         """
-        Intializes a new Object.
-
-        Args:
-            width: Width of the rectangle. Default to 0.
-            height: Height of the rectangle.
+        Constructor of the class Rectangle
+          Args:
+            - width (default = 0): int
+            - heigth (default = 0): int
         """
-        self.width = width
         self.height = height
+        self.width = width
+
+    def area(self):
+        """Calculate the area of a Rectangle"""
+        return self.__width * self.__height
+
+    def perimeter(self):
+        """Get the perimeter of a Rectangle"""
+        if (self.__width == 0 or self.__height == 0):
+            return 0
+
+        return (self.__width * 2) + (self.__height * 2)
+
+    def __str__(self):
+        """
+        Function to print a Square with #
+        """
+
+        if self.__width == 0 or self.__height == 0:
+            return ""
+
+        final = ['#' * self.__width for line in range(self.__height)]
+
+        return '\n'.join(final)
 
     @property
     def width(self):
-        """
-        Retrieves private attribute width.
-        """
+        """Getter of the property width"""
         return self.__width
 
     @width.setter
     def width(self, value):
         """
-        Sets value of private attribute width.
-
-        Raises:
-            TypeError: value if not an integer
-            ValueError: value if less than 0.
+        Getter of the property value
+          Args:
+            - value: int
         """
         if not isinstance(value, int):
-            raise TypeError("width must be an integer")
+            raise TypeError('width must be an integer')
+
         if value < 0:
-            raise ValueError("width must be >= 0")
+            raise ValueError('width must be >= 0')
+
         self.__width = value
 
     @property
     def height(self):
-        """
-        Retrieves private attribute height.
-        """
+        """Getter of the property height"""
         return self.__height
 
     @height.setter
     def height(self, value):
         """
-        Sets value of the private attribute height.
-        Raises:
-            TypeError: value if not an integer
-            ValueError: value if less than 0.
+        Getter of the property value
+          Args:
+            - value: int
         """
         if not isinstance(value, int):
-            raise TypeError("height must be an integer")
+            raise TypeError('height must be an integer')
+
         if value < 0:
-            raise ValueError("height must be >= 0")
+            raise ValueError('height must be >= 0')
+
         self.__height = value
-
-    def area(self):
-        """
-        Calculates and returns the area of the rectangle.
-        """
-        return self.__width * self.__height
-
-    def perimeter(self):
-        """
-        Calculates and returns the perimeter of the rectangle"
-
-        Cases whee width or height is 0 will be handled.
-        """
-        if self.__width == 0 or self.__height == 0:
-            return 0
-        return 2 * (self.__width + self.__height)
-
-    def __str__(self):
-        """
-        Returns a string representation of the rectangle using # character.
-        """
-        if self.__width == 0 or self.__height == 0:
-            return ""
-        return (("#" * self.__width) + "\n") * self.__height
